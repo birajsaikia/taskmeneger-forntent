@@ -8,6 +8,7 @@ import {
   Typography,
   Paper,
 } from '@mui/material';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 
 const SignUp = () => {
@@ -33,8 +34,10 @@ const SignUp = () => {
 
       if (response.data.success) {
         setMessage('User registered successfully. Redirecting...');
+        Cookies.set('token', response.data.token);
+        Cookies.set('userid', response.data.userid1);
         setTimeout(() => {
-          navigate('/signin');
+          navigate('/');
         }, 2000);
       } else {
         setMessage(response.data.message || 'Registration failed');
@@ -54,7 +57,7 @@ const SignUp = () => {
         <Paper elevation={3} sx={{ padding: 3 }}>
           <form onSubmit={handleSubmit}>
             <TextField
-              label="User ID"
+              label="Email"
               name="userid"
               value={formData.userid}
               onChange={handleChange}
@@ -94,7 +97,7 @@ const SignUp = () => {
             </Button>
           </form>
           <Typography mt={2}>
-            Already have an account? <a href="/signin">Sign in</a>
+            Already have an account? <a href="/signin">Login in</a>
           </Typography>
         </Paper>
       </Box>

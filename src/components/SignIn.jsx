@@ -54,12 +54,12 @@ const SignInPage = () => {
     <Container maxWidth="xs">
       <Box textAlign="center" my={4}>
         <Typography variant="h4" color="primary" gutterBottom>
-          Sign In
+          Login In
         </Typography>
         <Paper elevation={3} sx={{ padding: 3 }}>
           <form onSubmit={handleSubmitSignIn}>
             <TextField
-              label="User ID"
+              label="Email"
               name="userid"
               value={formData.userid}
               onChange={handleInputChange}
@@ -91,7 +91,7 @@ const SignInPage = () => {
               fullWidth
               sx={{ marginTop: 3 }}
             >
-              Sign In
+              Login In
             </Button>
           </form>
           <p>
