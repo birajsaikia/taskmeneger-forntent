@@ -5,21 +5,21 @@
 Start by cloning the repository to your local machine:
 
 ```
-git clone https://github.com/yourusername/task-manager.git
-cd task-manager  
+git clone https://github.com/birajsaikia/taskmeneger-backend.git
+cd taskmeneger-backend
 ```
 ### 2.Install Dependencies
 Navigate to the backend directory and install the necessary packages:
 
 ```
-cd server
+cd index
 npm install
 ```
 ### 3.Environment Setup
 Create a .env file in the server directory to store sensitive information like MongoDB URI and the JWT secret:
 
 ```
-MONGODB_URI=mongodb://localhost:27017/taskmanager
+MONGODB_URI=mongodb://0.0.0.0:27017/taskmaneger
 JWT_SECRET=yourSecretKey
 ```
 ### 4.Start the Backend Server
@@ -27,7 +27,7 @@ Once dependencies are installed and the .env file is set up, start the backend s
 
 ```
 npm start
-The backend API will be available at http://localhost:5000.
+The backend API will be available at http://localhost:5000
 ```
 
 ## Frontend Setup
@@ -35,7 +35,7 @@ The backend API will be available at http://localhost:5000.
 From the root project directory, go to the frontend folder:
 
 ```
-cd client
+cd ctaskmeneger-backend
 ```
 ### 2.Install Dependencies
 Install the necessary React and Material-UI dependencies:
