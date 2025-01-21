@@ -1,169 +1,104 @@
-# Task Manager App
+# Task Manager App Documentation
+## Setup Instructions
+## Backend Setup
+### 1.Clone the Repository
+Start by cloning the repository to your local machine:
 
-A simple task management application built with React, Node.js, and MongoDB. This app allows users to register, log in, create, update, and delete tasks. It also features a search bar to filter tasks and displays only the tasks associated with the logged-in user.
-
----
-
-## Features
-
-- **User Registration & Login**: Register new users and log in with their credentials.
-- **Task Management**:
-  - Create, update, and delete tasks.
-  - Search tasks by title or description.
-  - Display only tasks associated with the logged-in user.
-  - Pagination to load tasks in chunks (3 tasks per page).
-
----
-
-## Technologies Used
-
-- **Frontend**: 
-  - React, Material-UI, Axios, React Router, Cookie handling
-- **Backend**: 
-  - Node.js, Express, MongoDB, JWT Authentication
-- **Database**: 
-  - MongoDB
-- **Authentication**: 
-  - JWT (JSON Web Tokens)
-
----
-
-## Installation
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- **Node.js** (>=14.x)
-- **MongoDB** (local or MongoDB Atlas)
-
----
-
-### Clone the Repository
-
-To get started, clone the repository:
-
-```bash
+```
 git clone https://github.com/yourusername/task-manager.git
-cd task-manager
-Frontend Setup
-Navigate to the client directory:
+cd task-manager  
+```
+### 2.Install Dependencies
+Navigate to the backend directory and install the necessary packages:
 
-bash
-Copy
-Edit
-cd client
-Install the dependencies:
-
-bash
-Copy
-Edit
-npm install
-Start the React app:
-
-bash
-Copy
-Edit
-npm start
-The app will be available at http://localhost:3000.
-
-Backend Setup
-Navigate to the server directory:
-
-bash
-Copy
-Edit
+```
 cd server
-Install the dependencies:
-
-bash
-Copy
-Edit
 npm install
-Set up environment variables for MongoDB URI and JWT secret. You can create a .env file in the server directory:
+```
+### 3.Environment Setup
+Create a .env file in the server directory to store sensitive information like MongoDB URI and the JWT secret:
 
-bash
-Copy
-Edit
+```
 MONGODB_URI=mongodb://localhost:27017/taskmanager
 JWT_SECRET=yourSecretKey
-Start the backend server:
+```
+### 4.Start the Backend Server
+Once dependencies are installed and the .env file is set up, start the backend server:
 
-bash
-Copy
-Edit
+```
 npm start
-The server will be available at http://localhost:5000.
+The backend API will be available at http://localhost:5000.
+```
 
-MongoDB Setup
-Ensure your MongoDB database is running locally or use MongoDB Atlas to create a cloud database. Update the MONGODB_URI in your .env file accordingly.
+## Frontend Setup
+### 1.Navigate to the Frontend Directory
+From the root project directory, go to the frontend folder:
 
-Usage
-Sign Up: Navigate to the sign-up page and create an account by providing a user ID and password.
-Login: After signing up, log in with your credentials.
-Task Management: Once logged in, you can:
-Create new tasks
-Edit or delete existing tasks
-Search for tasks by title or description
-Task Display: Tasks are displayed in reverse order, showing the most recent tasks first. Pagination is implemented to load tasks in chunks (3 tasks per page).
-API Endpoints
-User Routes
-POST /api/tasks/user/register: Register a new user.
+```
+cd client
+```
+### 2.Install Dependencies
+Install the necessary React and Material-UI dependencies:
 
-Request Body: { "userid": "user123", "password": "password" }
-Response: { "success": true }
-POST /api/tasks/user/login: Login and receive a JWT token.
+```
+npm install
+```
+### 3.Start the React App
+Start the React development server:
+```
+npm start
+```
+The frontend application will be available at http://localhost:3000.
 
-Request Body: { "userid": "user123", "password": "password" }
-Response: { "token": "jwt-token" }
-Task Routes
-GET /api/tasks/:userid: Get all tasks for a specific user.
+## Design Choices and Assumptions
+### Frontend Design:
+- React and Material-UI:
+React was chosen for the frontend due to its flexibility and component-based structure, allowing for efficient UI updates. Material-UI was used for the design and components, ensuring a clean and responsive UI with minimal custom CSS.
 
-Response: An array of tasks.
-POST /api/tasks: Create a new task.
+- State Management with React's useState:
+For simplicity, React's built-in useState hook is used to manage the state in functional components. This approach was chosen for its ease of use in smaller apps. If the app scales in the future, a state management library like Redux may be considered.
 
-Request Body: { "title": "Task title", "description": "Task description", "userid": "user123" }
-Response: The created task.
-GET /api/tasks/:id: Get a specific task by ID.
+- Axios for API Requests:
+Axios was selected for making HTTP requests because of its simplicity, support for promises, and ease of handling JSON data.
 
-Response: The task object.
-PUT /api/tasks/:id: Update a specific task.
+- JWT Authentication:
+The app uses JSON Web Tokens (JWT) to authenticate users. This was chosen because JWTs are stateless and store user information on the client-side, reducing server load and simplifying scaling. JWTs are stored in cookies for security.
 
-Request Body: { "title": "Updated title", "description": "Updated description" }
-Response: The updated task.
-DELETE /api/tasks/:id: Delete a specific task.
+### Backend Design:
+- Node.js and Express:
+Node.js with Express was chosen for the backend because it's lightweight, scalable, and works well with JavaScript. Express simplifies routing and middleware management.
 
-Response: { "message": "Task deleted successfully" }
-Contributing
-If you'd like to contribute to this project, feel free to fork the repository, make your changes, and create a pull request. Please follow these steps:
+- MongoDB Database:
+MongoDB was used as the database because it's flexible, schema-less, and works well with JSON-like data, which makes it an ideal choice for handling dynamic task data.
 
-Fork the repository.
-Create a new branch: git checkout -b feature/your-feature.
-Make your changes.
-Commit your changes: git commit -am 'Add new feature'.
-Push to your branch: git push origin feature/your-feature.
-Create a new pull request.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+- JWT Authentication:
+JWT authentication is used for securing user login and managing sessions. A JWT token is generated upon successful login and is stored in the client's cookies for subsequent requests.
 
-Notes
-Update yourusername in the repository URL to your GitHub username.
-You can add any additional details such as deployment instructions or troubleshooting steps depending on your requirements.
-Links to Deployed Application
-Frontend: [Your Frontend URL]
-Backend: [Your Backend URL]
-markdown
-Copy
-Edit
+- Task and User Schema Design:
+The backend defines a user schema with fields for userid and password and a task schema with fields for title, description, and userid. The task schema is associated with the user to ensure each task belongs to a specific user.
 
----
+## Additional Features Implemented
+- Search Functionality:
+Users can search for tasks by their title or description. This feature enhances the usability of the app and helps users quickly find tasks.
 
-### Key Features of This `README.md`:
+- Pagination:
+Tasks are displayed with pagination, loading a maximum of 3 tasks per page. This helps to manage large amounts of tasks and improve the user experience by not overwhelming the interface.
 
-- **Clear section divisions**: Easy to navigate with the use of headings and subheadings.
-- **Code blocks**: Proper formatting for terminal commands, code snippets, and JSON data for better readability.
-- **Instructions**: Step-by-step guidance for setup and usage.
-- **Links**: Placeholder for your deployed application URLs.
-- **Contributing section**: Instructions for contributing to the project with a clear workflow.
+- Error Handling:
+The app includes error handling on both the frontend and backend. On the frontend, errors are displayed with helpful messages, and on the backend, validation errors and server issues are returned with descriptive messages.
 
-This `README.md` file will be much more professional and readable for anyone setting up or cont
+- Task Filtering:
+The app includes filtering capabilities, allowing users to view only tasks associated with their logged-in user.
+
+## Links to Deployed Application
+### Frontend (React):
+- Link: 
+[Frontend](https://taskmeneger-forntent.vercel.app)
+
+
+The frontend of the app is hosted on [your hosting service] (e.g., Netlify, Vercel). Visit this link to interact with the application.
+### Backend (Node.js API):
+- Link: [Backend](https://taskmanager-backend-1-1mjl.onrender.com)
+
+
+The backend API is hosted on [your hosting service] (e.g., Heroku, AWS). Use this link for API interactions (e.g., to register, log in, and manage tasks).
