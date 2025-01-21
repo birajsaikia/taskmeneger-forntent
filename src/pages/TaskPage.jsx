@@ -83,14 +83,18 @@ const TaskPage = () => {
   };
 
   const handlePageChange = (direction) => {
+    let newPage = currentPage;
+
     if (
       direction === 'next' &&
       currentPage * tasksPerPage < filteredTasks.length
     ) {
-      setCurrentPage(currentPage + 1);
+      newPage = currentPage + 1; // Move to next page
     } else if (direction === 'prev' && currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      newPage = currentPage - 1; // Move to previous page
     }
+
+    setCurrentPage(newPage);
   };
 
   return (
@@ -109,7 +113,7 @@ const TaskPage = () => {
       />
 
       <TaskList
-        tasks={currentTasks}
+        tasks={currentTasks.reverse()} // Reverse tasks on the current page
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
