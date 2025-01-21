@@ -30,7 +30,7 @@ const TaskPage = () => {
   const fetchTasks = async (userid) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/tasks/${userid}`
+        `https://taskmanager-backend-1-1mjl.onrender.com/api/tasks/${userid}`
       );
       setTasks(response.data);
     } catch (error) {
@@ -68,7 +68,9 @@ const TaskPage = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`);
+      await axios.delete(
+        `https://taskmanager-backend-1-1mjl.onrender.com/api/tasks/${taskId}`
+      );
       fetchTasks(userid); // Refresh tasks for the logged-in user
     } catch (error) {
       console.error('Error deleting task:', error);

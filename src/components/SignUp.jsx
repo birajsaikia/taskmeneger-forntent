@@ -27,7 +27,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/tasks/user/register',
+        'https://taskmanager-backend-1-1mjl.onrender.com/api/tasks/user/register',
         formData
       );
 

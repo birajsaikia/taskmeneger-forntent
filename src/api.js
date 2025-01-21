@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = 'https://taskmanager-backend-1-1mjl.onrender.com/api/tasks';
 
 // Fetch tasks
 export const getTasks = async (userid) => {

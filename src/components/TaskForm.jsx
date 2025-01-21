@@ -41,11 +41,14 @@ const TaskForm = ({ taskToEdit, editMode, onTaskSaved }) => {
     try {
       if (editMode) {
         await axios.put(
-          `http://localhost:5000/api/tasks/${taskToEdit._id}`,
+          `https://taskmanager-backend-1-1mjl.onrender.com/api/tasks/${taskToEdit._id}`,
           taskPayload
         );
       } else {
-        await axios.post('http://localhost:5000/api/tasks', taskPayload);
+        await axios.post(
+          'https://taskmanager-backend-1-1mjl.onrender.com/api/tasks',
+          taskPayload
+        );
       }
 
       setTaskData({ title: '', description: '' }); // Reset form after submission
