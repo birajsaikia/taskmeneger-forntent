@@ -15,31 +15,35 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
       </Typography>
       <List>
         {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <ListItem key={task._id}>
-              <ListItemText
-                primary={<Typography variant="h6">{task.title}</Typography>}
-                secondary={
-                  <Typography variant="body2">{task.description}</Typography>
-                }
-              />
-              <Button
-                onClick={() => onEdit(task)}
-                variant="outlined"
-                color="primary"
-                sx={{ marginRight: 1 }}
-              >
-                Edit
-              </Button>
-              <Button
-                onClick={() => onDelete(task._id)}
-                variant="outlined"
-                color="secondary"
-              >
-                Delete
-              </Button>
-            </ListItem>
-          ))
+          [...tasks].reverse().map(
+            (
+              task // Reverse to show new tasks first
+            ) => (
+              <ListItem key={task._id}>
+                <ListItemText
+                  primary={<Typography variant="h6">{task.title}</Typography>}
+                  secondary={
+                    <Typography variant="body2">{task.description}</Typography>
+                  }
+                />
+                <Button
+                  onClick={() => onEdit(task)}
+                  variant="outlined"
+                  color="primary"
+                  sx={{ marginRight: 1 }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => onDelete(task._id)}
+                  variant="outlined"
+                  color="secondary"
+                >
+                  Delete
+                </Button>
+              </ListItem>
+            )
+          )
         ) : (
           <Typography variant="body1" color="textSecondary">
             No tasks found.
