@@ -1,9 +1,9 @@
-const API_URL = 'https://taskmanager-backend-1-1mjl.onrender.com/api/tasks';
+const API_URL = 'http://localhost:5000/api/tasks';
 
-// Fetch all tasks
-export const getTasks = async () => {
+// Fetch tasks
+export const getTasks = async (userid) => {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}?userid=${userid}`);
     if (!response.ok) {
       throw new Error('Failed to fetch tasks.');
     }
@@ -35,7 +35,7 @@ export const addTask = async (taskData) => {
   }
 };
 
-// Update an existing task
+// Update a task
 export const updateTask = async (id, taskData) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {
